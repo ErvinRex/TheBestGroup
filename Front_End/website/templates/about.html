@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+<!-- About page -->
+{% block title %} About Page {% endblock %}
+
+{% block head %}
+<h1>About SNPglobal</h1>
+
+{% endblock %}
+    
+{% block content %}
+<div>
+    <p>SNPglobal is a web application that provides human population genetic information and summary statistics.</p>
+    <br/>
+    <p>The database currently supports the single nucleotide polymorphism data of chromosome 22 for five human populations from the 1000 Genomes Project.</p>
+    <br/>
+    <p>The genetic information stored in the SNPglobal database includes the alternate allele, reference allele and ancestral allele frequencies of each population. As well as the genotype frequencies of each population.</p>
+    <br/>
+    <p>Using the data from the SNPglobal database, the user can select their summary statistic of interest for their genomic region and population of interest. This data is displayed in interactive plots that may be saved, with downloadable plotting data.</p>
+    <br/>
+    <a href="https://www.internationalgenome.org/">International genome Website</a>
+</div>
+{% endblock %}

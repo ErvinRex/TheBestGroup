@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+
+<!-- Page for statistical outputs -->
+{% block title %}
+
+Statistical outputs
+
+{% endblock %}
+
+{% block content %}
+
+<div class='center'>
+<head>
+    <h1> Statistical outputs </h1>
+
+    <hr>
+    
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>    
+</head>
+
+<body>
+<!-- Fst outputs -->
+{% if message_for_user %}
+
+    <p>{{ message_for_user }}</p>
+
+{% else %}
+
+    {% if Fst_plot %}
+
+    <h1> Fst </h1>
+        {{ Fst_plot|safe }}
+    <div class='plot'>
+    <a class = "download_button" href="/getCSV_Fst">Download plot data</a>
+
+    <br/>
+
+    <div class = 'stats'>
+    <p>Overall Fst for genomic region queried:</p>
+
+        {% for pop in overall_Fst %}
+
+            <p>{{pop[1]}}: {{pop[0]}}</p>
+
+        {% endfor %}
+
+    </div>
+    </div>
+
+    {% endif %}
+
+{% endif %}
+
+<!-- Tajima's D outputs -->
+{% if TjD_plot %}
+
+<hr>
+
+<h1> Tajima's D </h1>
+    {{ TjD_plot|safe }}
+<div class='plot'>
+<a class = "download_button" href="/getCSV_TjD">Download plot data</a>
+
+<br/>
+
+<div class = 'stats'>
+<p>Overall Tajima's D for genomic region queried:</p>
+
+    {% for pop in overall_TjD %}
+
+        <p>{{pop[1]}}: {{pop[0]}}</p>
+
+    {% endfor %}
+
+</div>
+</div>
+
+{% endif %}
+
+<!-- Watterson's estimator Theta outputs -->
+{% if WeT_plot %}
+
+<hr>
+
+<h1> Watterson's estimator theta </h1>
+    {{ WeT_plot|safe }}
+<div class='plot'>
+<a class = "download_button" href="/getCSV_WeT">Download plot data</a>
+
+<br/>
+
+<div class = 'stats'>
+<p>Overall Watterson's estimator theta for genomic region queried:</p>
+
+    {% for pop in overall_WeT %}
+
+        <p>{{pop[1]}}: {{pop[0]}}</p>
+
+    {% endfor %}
+
+</div>
+</div>
+
+{% endif %}
+
+<!-- Haplotype diversity outputs -->
+{% if HaD_plot %}
+
+<hr>
+
+<h1> Haplotype Diversity </h1>
+    {{ HaD_plot|safe }}
+<div class='plot'>
+<a class = "download_button" href="/getCSV_HaD">Download plot data</a>
+
+<br/>
+
+<div class = 'stats'>
+<p>Overall Haplotype Diversity for genomic region queried:</p>
+
+    {% for pop in overall_HaD %}
+
+        <p>{{pop[1]}}: {{pop[0]}}</p>
+
+    {% endfor %}  
+
+</div>
+</div>
+
+{% endif %}
+
+</body>
+
+{% endblock %}

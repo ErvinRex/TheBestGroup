@@ -1,0 +1,191 @@
+{% extends 'base.html' %}
+
+<!-- Basic search results page -->
+
+{% block title %}
+
+Basic search results
+
+{% endblock %}
+
+{% block content %}
+<!-- Display message for user if no results returned by home page query -->
+<div class="row">
+    <div class="column1">
+
+    {% if error %}
+
+        <h3>{{ error }}</h3>
+
+    {% else %}
+
+        <h3>Displaying results for: {{ search_data }}</h3>
+    <div class = 'stats_link'>
+
+    {% if rsID %}
+
+        <p>Multiple SNPs required for statistical analysis</p>
+
+    {% else %}
+<!-- Present button/link to statistical tests and populations of interest if query results returned -->
+        <p>Press GO to select statistical tests and populations of interest.</p>
+        <a class="stats_button" href="{{ url_for( 'home.stats' ) }}">GO</a>
+    
+    {% endif %}
+
+    </div>
+    </div>
+<!-- Key for table headers -->
+    <div class="column2">
+        <table class="table-sub">
+            <tr>
+                <th>R/R</th>
+                <th>A/A</th>
+                <th>R/A</th>
+            </tr>
+            <tr>
+                <td>Homozygous for reference allele</td>
+                <td>Homozygous for alternate allele</td>
+                <td>Heterozygous</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<br/>
+<!-- Basic search results for user input on home page -->
+    <div class='container-fluid'>
+    <div style="overflow-x:auto;">
+        <table class="table">
+            <tr>
+                <th colspan="4"></th>
+                <th colspan="3">Allele</th>
+                <th colspan="5">Alternate Allele Frequency</th>
+                <th colspan="3">Genotype Frequency - LWK</th>
+                <th colspan="3">Genotype Frequency -  CLM</th>
+                <th colspan="3">Genotype Frequency -  CHS</th>
+                <th colspan="3">Genotype Frequency -  TSI</th>
+                <th colspan="3">Genotype Frequency -  STU</th>
+                <th colspan="5">Derived Allele Frequency</th>
+                <tr>
+            <tr>
+                <th>Position</th>
+                <th>Gene Name</th>
+                <th>Gene ID</th>
+                <th>rsID</th>
+                <th>Reference</th>
+                <th>Alternate</th>
+                <th>Ancestral</th>
+                <th>LWK</th>
+                <th>CLM</th>
+                <th>CHS</th>
+                <th>TSI</th>
+                <th>STU</th>
+                <th>R/R</th>
+                <th>A/A</th>
+                <th>R/A</th>
+                <th>R/R</th>
+                <th>A/A</th>
+                <th>R/A</th>
+                <th>R/R</th>
+                <th>A/A</th>
+                <th>R/A</th>
+                <th>R/R</th>
+                <th>A/A</th>
+                <th>R/A</th>
+                <th>R/R</th>
+                <th>A/A</th>
+                <th>R/A</th>  
+                <th>LWK</th>
+                <th>CLM</th>
+                <th>CHS</th>
+                <th>TSI</th>
+                <th>STU</th>
+            </tr>
+
+            {% for thread in threads.items %}
+
+            <tr>
+                <td>{{thread.Position}}</td>
+                <td>{{thread.Gene_Name}}</td>
+                <td>{{thread.GeneID}}</td>
+                <td>{{thread.rsID}}</td>
+                <td>{{thread.REF}}</td>
+                <td>{{thread.ALT}}</td>
+                <td>{{thread.AA}}</td>
+                <td>{{thread.AF_LWK}}</td>
+                <td>{{thread.AF_CLM}}</td>
+                <td>{{thread.AF_CHS}}</td>
+                <td>{{thread.AF_TSI}}</td>
+                <td>{{thread.AF_STU}}</td>
+                <td>{{thread.GTF_LWK_HomRef}}</td>
+                <td>{{thread.GTF_LWK_HomAlt}}</td>
+                <td>{{thread.GTF_LWK_Het}}</td>
+                <td>{{thread.GTF_CLM_HomRef}}</td>
+                <td>{{thread.GTF_CLM_HomAlt}}</td>
+                <td>{{thread.GTF_CLM_Het}}</td>
+                <td>{{thread.GTF_CHS_HomRef}}</td>
+                <td>{{thread.GTF_CHS_HomAlt}}</td>
+                <td>{{thread.GTF_CHS_Het}}</td>
+                <td>{{thread.GTF_TSI_HomRef}}</td>
+                <td>{{thread.GTF_TSI_HomAlt}}</td>
+                <td>{{thread.GTF_TSI_Het}}</td>
+                <td>{{thread.GTF_STU_HomRef}}</td>
+                <td>{{thread.GTF_STU_HomAlt}}</td>
+                <td>{{thread.GTF_STU_Het}}</td>
+                <td>{{thread.DAF_LWK}}</td>
+                <td>{{thread.DAF_CLM}}</td>
+                <td>{{thread.DAF_CHS}}</td>
+                <td>{{thread.DAF_TSI}}</td>
+                <td>{{thread.DAF_STU}}</td>
+            </tr>
+
+            {% endfor %}
+
+        </table>
+<!-- Display pages -->
+    </div>
+        <div class="pagination">
+
+            {% for page in threads.iter_pages() %}
+
+                {% if page %}
+
+                    <a href="{{ url_for('home.thread', page_num=page) }}">{{ page }}</a>
+
+                {% else %}
+
+                ...
+
+                {% endif %}
+
+            {% endfor %}
+            
+        </div>
+    </div>
+
+{% endif %}
+<!-- Key for population codes -->
+<body class='codes_table'>
+    <table class="table-sub">
+        <tr>
+            <th colspan="5">Population codes</th>
+        </tr>
+        <tr>
+            <td>LWK</td>
+            <td>CLM</td>
+            <td>CHS</td>
+            <td>TSI</td>
+            <td>STU</td>
+        </tr>
+        <tr>
+            <td>Luhya in Webuye, Kenya</td>
+            <td>Colombian in Medellin, Colombia</td>
+            <td>Southern Han Chinese, China</td>
+            <td>Toscani in Italy</td>
+            <td>Sri Lankan Tamil in the UK</td>
+        </tr>
+</table>
+</body>
+
+{% endblock %}

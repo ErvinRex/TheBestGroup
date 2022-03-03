@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+<!-- Selection of statistical tests and populations of interest page -->
+{% block title %}
+
+Select population(s) and statistical test(s)
+
+{% endblock %}
+
+<!-- Form for user selection of statistical tests -->
+{% block content %}
+
+<h2>Select populations and statistical tests of interest</h2>
+
+<hr>
+
+<div class='center'>
+  <div > 
+      <form method = 'POST'>
+          
+          {{ form_pops.hidden_tag() }}
+          
+          <h3>(1) Select population</h3>
+          <p>Hold command to select multiple</p>
+
+          <div class='form-select'>{{ form_pops.pops(class="form-select", size="5") }}</div>
+          {{ form_pops.submit() }}
+
+      </form>
+
+      <br/>
+
+      <hr>
+<!-- Form for user selection of populations of interest -->
+      <form class='select' method = 'POST'>
+
+          {{ form_stats.hidden_tag() }}
+
+          <h3>(2) Select statistical test</h3>
+          <p>Hold command to select multiple</p>
+
+          <div class='form-select'>{{ form_stats.stats(class="form-select") }}</div>
+          {{ form_stats.submit() }}
+
+      </form>
+  </div>
+
+  <hr>
+
+  <br/>
+
+  <div>
+    <p>Press GO to go view statistical outputs</p>
+    <a class="stats_button" href="{{ url_for( 'home.stats_2' ) }}">GO</a>
+  </div>
+
+  <br/>
+<!-- Key for population codes -->
+    <table class = 'center_table'>
+      <tr>
+          <th colspan="5">Population codes</th>
+      </tr>
+      <tr>
+          <td>LWK</td>
+          <td>CLM</td>
+          <td>CHS</td>
+          <td>TSI</td>
+          <td>STU</td>
+      </tr>
+      <tr>
+          <td>Luhya in Webuye, Kenya</td>
+          <td>Colombian in Medellin, Colombia</td>
+          <td>Southern Han Chinese, China</td>
+          <td>Toscani in Italy</td>
+          <td>Sri Lankan Tamil in the UK</td>
+      </tr>
+  </table>
+</div>
+
+{% endblock %}

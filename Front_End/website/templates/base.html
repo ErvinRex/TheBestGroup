@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<title>{% block title %}{% endblock %}</title>
+
+<!-- Bootstrap link for image -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- Link to css script -->
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+<!-- Navigation bar -->
+<head>
+    <div class="topnav">
+        <div class="topnav-centered">
+            <a href="{{ url_for( 'home.about' ) }}"><i class="fa fa-globe"></i>SNPglobal</a>
+        </div>
+        
+        <a href="{{ url_for( 'home.home' ) }}">Home</a>
+       
+        <div class="topnav-right">
+            <a href="{{ url_for( 'home.how_to' ) }}">How To</a>
+        </div>
+    </div>
+<!-- Head content -->
+    {% block top %}
+    {% endblock %}
+
+    <div class='container'>
+    {% block head %}
+    
+    {% endblock %}
+    </div>
+</head>
+<!-- Body content -->
+<body>
+    <div class='container'>
+    {% block content %}
+    {% endblock %}
+    </div> 
+</body>

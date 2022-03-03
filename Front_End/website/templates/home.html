@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Home
+{% endblock %}
+<!-- Forms for user input of rsID, Gene, Gene ID, Chromosome position -->
+{% block content %}
+<div class='center'>
+    <h1>Home</h1>
+    <hr>
+    <br/>
+    <form method = 'POST'>
+        {{ form_rsID.hidden_tag() }}
+        {{ form_rsID.rsID.label }}
+        {{ form_rsID.rsID() }}
+        {{ form_rsID.submit() }}
+    </form>
+    <br/>
+    <form method = 'POST'>
+        {{ form_gene.hidden_tag() }}
+        {{ form_gene.gene.label }}
+        {{ form_gene.gene() }}
+        {{ form_gene.submit() }}
+    </form>
+    <br/>
+    <form method = 'POST'>
+        {{ form_geneid.hidden_tag() }}
+        {{ form_geneid.geneid.label }}
+        {{ form_geneid.geneid() }}
+        {{ form_geneid.submit() }}
+    </form>
+    <br/>
+    <form method = 'POST'>
+        {{ form_pos.hidden_tag() }}
+        {{ form_pos.pos_start.label }}
+        {{ form_pos.pos_start() }}
+        {{ form_pos.pos_end.label }}
+        {{ form_pos.pos_end() }}
+        {{ form_pos.submit() }}
+    </form>
+    <br/>
+    <hr>
+<!-- LOGO -->
+   <image class = 'img' height = '500' width = '500' src="{{url_for('static',filename = 'LOGO.jpeg')}}" ></image>
+    
+</div>
+
+{% endblock %}
